@@ -70,7 +70,7 @@ export function buildApiHandler(configuration: ApiConfiguration): ApiHandler {
 		case "xai":
 			return new XAIHandler(options)
 		case "telkom-ai":
-				return new TelkomAiHandler(options)
+			return new TelkomAiHandler(options)
 		default:
 			return new AnthropicHandler(options)
 	}

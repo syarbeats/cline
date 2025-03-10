@@ -59,16 +59,15 @@ export class TelkomAiHandler implements ApiHandler {
 		}
 	}
 
-
 	getModel(): { id: TelkomAiModelId; info: ModelInfo } {
-			const modelId = this.options.apiModelId
-			if (modelId && modelId in telkomAiModels) {
-				const id = modelId as TelkomAiModelId
-				return { id, info: telkomAiModels[id] }
-			}
-			return {
-				id: telkomAiDefaultModelId,
-				info: telkomAiModels[telkomAiDefaultModelId],
-			}
+		const modelId = this.options.apiModelId
+		if (modelId && modelId in telkomAiModels) {
+			const id = modelId as TelkomAiModelId
+			return { id, info: telkomAiModels[id] }
 		}
+		return {
+			id: telkomAiDefaultModelId,
+			info: telkomAiModels[telkomAiDefaultModelId],
+		}
+	}
 }

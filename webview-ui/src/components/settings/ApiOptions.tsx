@@ -42,7 +42,7 @@ import {
 	xaiDefaultModelId,
 	xaiModels,
 	telkomAiDefaultModelId,
-	telkomAiModels
+	telkomAiModels,
 } from "../../../../src/shared/api"
 import { ExtensionMessage } from "../../../../src/shared/ExtensionMessage"
 import { useExtensionState } from "../../context/ExtensionStateContext"
@@ -1240,8 +1240,6 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 				</div>
 			)}
 
-
-
 			{apiErrorMessage && (
 				<p
 					style={{
@@ -1539,7 +1537,7 @@ export function normalizeApiConfiguration(apiConfiguration?: ApiConfiguration): 
 		case "xai":
 			return getProviderData(xaiModels, xaiDefaultModelId)
 		case "telkom-ai":
-				return getProviderData(telkomAiModels, telkomAiDefaultModelId)
+			return getProviderData(telkomAiModels, telkomAiDefaultModelId)
 		default:
 			return getProviderData(anthropicModels, anthropicDefaultModelId)
 	}

@@ -1012,4 +1012,3 @@ export const telkomAiModels = {
 		outputPrice: 0,
 	},
 } as const satisfies Record<string, ModelInfo>
-
