@@ -19,6 +19,7 @@ import { VsCodeLmHandler } from "./providers/vscode-lm"
 import { LiteLlmHandler } from "./providers/litellm"
 import { AskSageHandler } from "./providers/asksage"
 import { XAIHandler } from "./providers/xai"
+import { TelkomAiHandler } from "./providers/telkom-ai"
 
 export interface ApiHandler {
 	createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream
@@ -68,6 +69,8 @@ export function buildApiHandler(configuration: ApiConfiguration): ApiHandler {
 			return new AskSageHandler(options)
 		case "xai":
 			return new XAIHandler(options)
+		case "telkom-ai":
+				return new TelkomAiHandler(options)
 		default:
 			return new AnthropicHandler(options)
 	}

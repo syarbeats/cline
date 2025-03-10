@@ -41,6 +41,8 @@ import {
 	askSageDefaultURL,
 	xaiDefaultModelId,
 	xaiModels,
+	telkomAiDefaultModelId,
+	telkomAiModels
 } from "../../../../src/shared/api"
 import { ExtensionMessage } from "../../../../src/shared/ExtensionMessage"
 import { useExtensionState } from "../../context/ExtensionStateContext"
@@ -203,6 +205,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 					<VSCodeOption value="litellm">LiteLLM</VSCodeOption>
 					<VSCodeOption value="asksage">AskSage</VSCodeOption>
 					<VSCodeOption value="xai">X AI</VSCodeOption>
+					<VSCodeOption value="telkom-ai">Telkom AI</VSCodeOption>
 				</VSCodeDropdown>
 			</DropdownContainer>
 
@@ -1224,6 +1227,21 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 				</div>
 			)}
 
+			{selectedProvider === "telkom-ai" && (
+				<div>
+					<VSCodeTextField
+						value={apiConfiguration?.apiKey || ""}
+						style={{ width: "100%" }}
+						type="password"
+						onInput={handleInputChange("apiKey")}
+						placeholder="Enter API Key...">
+						<span style={{ fontWeight: 500 }}>APT API Key</span>
+					</VSCodeTextField>
+				</div>
+			)}
+
+
+
 			{apiErrorMessage && (
 				<p
 					style={{
@@ -1258,6 +1276,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 							{selectedProvider === "mistral" && createDropdown(mistralModels)}
 							{selectedProvider === "asksage" && createDropdown(askSageModels)}
 							{selectedProvider === "xai" && createDropdown(xaiModels)}
+							{selectedProvider === "telkom-ai" && createDropdown(telkomAiModels)}
 						</DropdownContainer>
 
 						{((selectedProvider === "anthropic" && selectedModelId === "claude-3-7-sonnet-20250219") ||
@@ -1519,6 +1538,8 @@ export function normalizeApiConfiguration(apiConfiguration?: ApiConfiguration): 
 			}
 		case "xai":
 			return getProviderData(xaiModels, xaiDefaultModelId)
+		case "telkom-ai":
+				return getProviderData(telkomAiModels, telkomAiDefaultModelId)
 		default:
 			return getProviderData(anthropicModels, anthropicDefaultModelId)
 	}

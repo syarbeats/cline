@@ -17,6 +17,7 @@ export type ApiProvider =
 	| "litellm"
 	| "asksage"
 	| "xai"
+	| "telkom-ai"
 
 export interface ApiHandlerOptions {
 	apiModelId?: string
@@ -64,6 +65,9 @@ export interface ApiHandlerOptions {
 	asksageApiKey?: string
 	xaiApiKey?: string
 	thinkingBudgetTokens?: number
+	telkomAiBaseUrl?: string
+	telkomAiApiKey?: string
+	telkomAiModelId?: string
 }
 
 export type ApiConfiguration = ApiHandlerOptions & {
@@ -994,3 +998,18 @@ export const xaiModels = {
 		description: "X AI's Grok Beta model (legacy) with 131K context window",
 	},
 } as const satisfies Record<string, ModelInfo>
+
+// Telkom AI
+export type TelkomAiModelId = keyof typeof telkomAiModels
+export const telkomAiDefaultModelId: TelkomAiModelId = "gpt-4o-mini"
+export const telkomAiModels = {
+	"gpt-4o-mini": {
+		maxTokens: 5000,
+		contextWindow: 4096,
+		supportsImages: false,
+		supportsPromptCache: false,
+		inputPrice: 0,
+		outputPrice: 0,
+	},
+} as const satisfies Record<string, ModelInfo>
+
